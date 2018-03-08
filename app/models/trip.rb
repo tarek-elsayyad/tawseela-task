@@ -1,6 +1,7 @@
 class Trip < ApplicationRecord
     enum current_status: [:created, :ongoing, :completed]
     belongs_to :user
+    has_many :trip_check_points
     validate_enum_attributes :current_status
     validates :starting_time, :starting_latitude, :starting_longitude, :user_id, presence: :true
     validates :starting_latitude, :starting_longitude, numericality: :true
