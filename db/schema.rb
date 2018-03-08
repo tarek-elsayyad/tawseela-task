@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308114424) do
+ActiveRecord::Schema.define(version: 20180308120727) do
+
+  create_table "trips", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.integer "starting_time"
+    t.float "starting_latitude", limit: 24
+    t.float "starting_longitude", limit: 24
+    t.string "starting_address"
+    t.integer "ended_time"
+    t.integer "estimated_arrival_time"
+    t.integer "current_status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_trips_on_user_id"
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"

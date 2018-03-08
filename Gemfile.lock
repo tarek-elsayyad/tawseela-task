@@ -48,6 +48,9 @@ GEM
     delayed_job_active_record (4.1.2)
       activerecord (>= 3.0, < 5.2)
       delayed_job (>= 3.0, < 5)
+    enum_attributes_validation (0.1.7)
+      activerecord
+      activesupport
     erubi (1.7.1)
     ffi (1.9.23)
     globalid (0.4.1)
@@ -133,6 +136,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   delayed_job_active_record
+  enum_attributes_validation
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.3.18, < 0.5)

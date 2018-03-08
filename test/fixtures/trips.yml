@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  users: 
+  starting_time: 2018-03-08 14:07:27
+  starting_latitude: 1.5
+  starting_longitude: 1.5
+  starting_address: MyString
+  ended_time: 2018-03-08 14:07:27
+  estimated_arrival_time: 2018-03-08 14:07:27
+  current_status: 1
+
+two:
+  users: 
+  starting_time: 2018-03-08 14:07:27
+  starting_latitude: 1.5
+  starting_longitude: 1.5
+  starting_address: MyString
+  ended_time: 2018-03-08 14:07:27
+  estimated_arrival_time: 2018-03-08 14:07:27
+  current_status: 1
