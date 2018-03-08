@@ -1,4 +1,4 @@
-class TripsController < ApplicationController
+class Api::V1::TripsController < ApplicationController
   before_action :set_trip, only: [:show, :update, :destroy]
 
   # GET /trips
@@ -18,7 +18,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
 
     if @trip.save
-      render :show, status: :created, location: @trip
+      render :show, status: :created
     else
       render json: @trip.errors, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1.json
   def update
     if @trip.update(trip_params)
-      render :show, status: :ok, location: @trip
+      render :show, status: :ok
     else
       render json: @trip.errors, status: :unprocessable_entity
     end

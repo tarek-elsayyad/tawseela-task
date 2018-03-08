@@ -1,4 +1,4 @@
-class TripCheckPointsController < ApplicationController
+class Api::V1::TripCheckPointsController < ApplicationController
   before_action :set_trip_check_point, only: [:show]
   before_action :set_trip
   
