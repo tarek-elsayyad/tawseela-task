@@ -1166,3 +1166,132 @@ Completed 201 Created in 138ms (Views: 49.2ms | ActiveRecord: 13.8ms)
   [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE `delayed_jobs` SET `delayed_jobs`.`locked_at` = '2018-03-08 14:41:32', `delayed_jobs`.`locked_by` = 'delayed_job host:Tareks-MacBook-Pro.local pid:36631' WHERE ((run_at <= '2018-03-08 14:41:32' AND (locked_at IS NULL OR locked_at < '2018-03-08 10:41:32') OR locked_by = 'delayed_job host:Tareks-MacBook-Pro.local pid:36631') AND failed_at IS NULL) ORDER BY priority ASC, run_at ASC LIMIT 1[0m
   [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `delayed_jobs` SET `delayed_jobs`.`locked_at` = '2018-03-08 14:41:37', `delayed_jobs`.`locked_by` = 'delayed_job host:Tareks-MacBook-Pro.local pid:36631' WHERE ((run_at <= '2018-03-08 14:41:37' AND (locked_at IS NULL OR locked_at < '2018-03-08 10:41:37') OR locked_by = 'delayed_job host:Tareks-MacBook-Pro.local pid:36631') AND failed_at IS NULL) ORDER BY priority ASC, run_at ASC LIMIT 1[0m
   [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Started POST "/api/v1/trips/3/trip_check_points/" for 127.0.0.1 at 2018-03-08 19:07:13 +0200
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::V1::TripCheckPointsController#create as JSON
+  Parameters: {"trip_check_point"=>{"user_id"=>"2", "latitude"=>"55.3", "longitude"=>"14.2", "speed"=>"100"}, "trip"=>{"starting_time"=>"1521376188", "current_status"=>"created"}, "trip_id"=>"3"}
+  [1m[36mTrip Load (0.5ms)[0m  [1m[34mSELECT  `trips`.* FROM `trips` WHERE `trips`.`id` = 3 LIMIT 1[0m
+Completed 500 Internal Server Error in 106ms (ActiveRecord: 7.1ms)
+
+
+  
+NoMethodError (undefined method `delayed' for #<TripCheckPoint:0x00007fd3c34d5910>
+Did you mean?  delay):
+  
+app/controllers/api/v1/trip_check_points_controller.rb:21:in `create'
+Started POST "/api/v1/trips/3/trip_check_points/" for 127.0.0.1 at 2018-03-08 19:07:27 +0200
+Processing by Api::V1::TripCheckPointsController#create as JSON
+  Parameters: {"trip_check_point"=>{"user_id"=>"2", "latitude"=>"55.3", "longitude"=>"14.2", "speed"=>"100"}, "trip"=>{"starting_time"=>"1521376188", "current_status"=>"created"}, "trip_id"=>"3"}
+  [1m[36mTrip Load (0.5ms)[0m  [1m[34mSELECT  `trips`.* FROM `trips` WHERE `trips`.`id` = 3 LIMIT 1[0m
+Completed 500 Internal Server Error in 49ms (ActiveRecord: 5.5ms)
+
+
+  
+ArgumentError (job cannot be created for non-persisted record: #<TripCheckPoint id: nil, trip_id: 3, speed: 100, latitude: 55.3, longitude: 14.2, user_id: 2, created_at: nil, updated_at: nil>):
+  
+app/controllers/api/v1/trip_check_points_controller.rb:21:in `create'
+Started POST "/api/v1/trips/3/trip_check_points/" for 127.0.0.1 at 2018-03-08 19:07:59 +0200
+Processing by Api::V1::TripCheckPointsController#create as JSON
+  Parameters: {"trip_check_point"=>{"user_id"=>"2", "latitude"=>"55.3", "longitude"=>"14.2", "speed"=>"100"}, "trip"=>{"starting_time"=>"1521376188", "current_status"=>"created"}, "trip_id"=>"3"}
+  [1m[36mTrip Load (0.6ms)[0m  [1m[34mSELECT  `trips`.* FROM `trips` WHERE `trips`.`id` = 3 LIMIT 1[0m
+Completed 500 Internal Server Error in 46ms (ActiveRecord: 7.5ms)
+
+
+  
+NoMethodError (undefined method `delayed_save' for TripCheckPoint(id: integer, trip_id: integer, speed: integer, latitude: float, longitude: float, user_id: integer, created_at: datetime, updated_at: datetime)):
+  
+app/controllers/api/v1/trip_check_points_controller.rb:21:in `create'
+Started POST "/api/v1/trips/3/trip_check_points/" for 127.0.0.1 at 2018-03-08 19:08:16 +0200
+Processing by Api::V1::TripCheckPointsController#create as JSON
+  Parameters: {"trip_check_point"=>{"user_id"=>"2", "latitude"=>"55.3", "longitude"=>"14.2", "speed"=>"100"}, "trip"=>{"starting_time"=>"1521376188", "current_status"=>"created"}, "trip_id"=>"3"}
+  [1m[36mTrip Load (0.4ms)[0m  [1m[34mSELECT  `trips`.* FROM `trips` WHERE `trips`.`id` = 3 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (3.6ms)[0m  [1m[32mINSERT INTO `delayed_jobs` (`handler`, `run_at`, `created_at`, `updated_at`) VALUES ('--- !ruby/object:Delayed::PerformableMethod\nobject: !ruby/class \'TripCheckPoint\'\nmethod_name: :delayed_save\nargs:\n- !ruby/object:TripCheckPoint\n  concise_attributes:\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: id\n  - !ruby/object:ActiveRecord::Attribute::FromUser\n    name: trip_id\n    value_before_type_cast: 3\n    original_attribute: !ruby/object:ActiveRecord::Attribute::FromDatabase\n      name: trip_id\n      type: &2 !ruby/object:ActiveModel::Type::Integer\n        precision: \n        scale: \n        limit: 8\n        range: !ruby/range\n          begin: -9223372036854775808\n          end: 9223372036854775808\n          excl: true\n  - !ruby/object:ActiveRecord::Attribute::FromUser\n    name: speed\n    value_before_type_cast: \'100\'\n    original_attribute: !ruby/object:ActiveRecord::Attribute::FromDatabase\n      name: speed\n      type: !ruby/object:ActiveModel::Type::Integer\n        precision: \n        scale: \n        limit: 4\n        range: !ruby/range\n          begin: -2147483648\n          end: 2147483648\n          excl: true\n  - !ruby/object:ActiveRecord::Attribute::FromUser\n    name: latitude\n    value_before_type_cast: \'55.3\'\n    original_attribute: !ruby/object:ActiveRecord::Attribute::FromDatabase\n      name: latitude\n      type: &1 !ruby/object:ActiveModel::Type::Float\n        precision: \n        scale: \n        limit: 24\n  - !ruby/object:ActiveRecord::Attribute::FromUser\n    name: longitude\n    value_before_type_cast: \'14.2\'\n    original_attribute: !ruby/object:ActiveRecord::Attribute::FromDatabase\n      name: longitude\n      type: *1\n  - !ruby/object:ActiveRecord::Attribute::FromUser\n    name: user_id\n    value_before_type_cast: \'2\'\n    original_attribute: !ruby/object:ActiveRecord::Attribute::FromDatabase\n      name: user_id\n      type: *2\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: created_at\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: updated_at\n  new_record: true\n  active_record_yaml_version: 2\n', '2018-03-08 17:08:16', '2018-03-08 17:08:16', '2018-03-08 17:08:16')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+No template found for Api::V1::TripCheckPointsController#create, rendering head :no_content
+Completed 204 No Content in 193ms (ActiveRecord: 12.0ms)
+
+
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[36mTripCheckPoint Load (0.3ms)[0m  [1m[34mSELECT  `trip_check_points`.* FROM `trip_check_points` ORDER BY `trip_check_points`.`id` DESC LIMIT 1[0m
+Started POST "/api/v1/trips/3/trip_check_points/" for 127.0.0.1 at 2018-03-08 19:09:22 +0200
+Processing by Api::V1::TripCheckPointsController#create as JSON
+  Parameters: {"trip_check_point"=>{"user_id"=>"2", "latitude"=>"55.3", "longitude"=>"14.2", "speed"=>"100"}, "trip"=>{"starting_time"=>"1521376188", "current_status"=>"created"}, "trip_id"=>"3"}
+  [1m[36mTrip Load (0.3ms)[0m  [1m[34mSELECT  `trips`.* FROM `trips` WHERE `trips`.`id` = 3 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO `trip_check_points` (`trip_id`, `speed`, `latitude`, `longitude`, `user_id`, `created_at`, `updated_at`) VALUES (3, 100, 55.3, 14.2, 2, '2018-03-08 17:09:22', '2018-03-08 17:09:22')[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `delayed_jobs` (`handler`, `run_at`, `created_at`, `updated_at`) VALUES ('--- !ruby/object:Delayed::PerformableMethod\nobject: !ruby/object:TripCheckPoint\n  concise_attributes:\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: id\n    value_before_type_cast: 11\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: trip_id\n    value_before_type_cast: 3\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: speed\n    value_before_type_cast: 100\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: latitude\n    value_before_type_cast: 55.3\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: longitude\n    value_before_type_cast: 14.2\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: user_id\n    value_before_type_cast: 2\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: created_at\n    value_before_type_cast: 2018-03-08 17:09:22.000000000 Z\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: updated_at\n    value_before_type_cast: 2018-03-08 17:09:22.000000000 Z\n  new_record: false\n  active_record_yaml_version: 2\nmethod_name: :cache_last_location_without_delay\nargs: []\n', '2018-03-08 17:09:22', '2018-03-08 17:09:22', '2018-03-08 17:09:22')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering api/v1/trip_check_points/show.json.jbuilder
+  Rendered api/v1/trip_check_points/show.json.jbuilder (6.3ms)
+Completed 500 Internal Server Error in 96ms (ActiveRecord: 14.6ms)
+
+
+  
+ActionView::Template::Error (Missing partial trip_check_points/_trip_check_point with {:locale=>[:en], :formats=>[:json], :variants=>[], :handlers=>[:jbuilder]}. Searched in:
+  * "/Users/tarek/workprojects/tawseela-task/app/views"
+):
+    1: json.partial! "trip_check_points/trip_check_point", trip_check_point: @trip_check_point
+  
+app/views/api/v1/trip_check_points/show.json.jbuilder:1:in `_app_views_api_v__trip_check_points_show_json_jbuilder__2058349187320450105_70273768588440'
+app/controllers/api/v1/trip_check_points_controller.rb:23:in `create'
+Started POST "/api/v1/trips/3/trip_check_points/" for 127.0.0.1 at 2018-03-08 19:11:20 +0200
+Processing by Api::V1::TripCheckPointsController#create as JSON
+  Parameters: {"trip_check_point"=>{"user_id"=>"2", "latitude"=>"55.3", "longitude"=>"14.2", "speed"=>"100"}, "trip"=>{"starting_time"=>"1521376188", "current_status"=>"created"}, "trip_id"=>"3"}
+  [1m[36mTrip Load (0.5ms)[0m  [1m[34mSELECT  `trips`.* FROM `trips` WHERE `trips`.`id` = 3 LIMIT 1[0m
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `trip_check_points` (`trip_id`, `speed`, `latitude`, `longitude`, `user_id`, `created_at`, `updated_at`) VALUES (3, 100, 55.3, 14.2, 2, '2018-03-08 17:11:20', '2018-03-08 17:11:20')[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `delayed_jobs` (`handler`, `run_at`, `created_at`, `updated_at`) VALUES ('--- !ruby/object:Delayed::PerformableMethod\nobject: !ruby/object:TripCheckPoint\n  concise_attributes:\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: id\n    value_before_type_cast: 12\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: trip_id\n    value_before_type_cast: 3\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: speed\n    value_before_type_cast: 100\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: latitude\n    value_before_type_cast: 55.3\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: longitude\n    value_before_type_cast: 14.2\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: user_id\n    value_before_type_cast: 2\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: created_at\n    value_before_type_cast: 2018-03-08 17:11:20.000000000 Z\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: updated_at\n    value_before_type_cast: 2018-03-08 17:11:20.000000000 Z\n  new_record: false\n  active_record_yaml_version: 2\nmethod_name: :cache_last_location_without_delay\nargs: []\n', '2018-03-08 17:11:20', '2018-03-08 17:11:20', '2018-03-08 17:11:20')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering api/v1/trip_check_points/show.json.jbuilder
+  Rendered api/v1/trip_check_points/_trip_check_point.json.jbuilder (379.6ms)
+  Rendered api/v1/trip_check_points/show.json.jbuilder (381.3ms)
+Completed 500 Internal Server Error in 409ms (ActiveRecord: 5.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `trip_trip_check_point_url' for #<#<Class:0x00007fd3c60885a8>:0x00007fd3c7013e28>):
+    1: json.cache! [@trip, trip_check_point] do 
+    2:     json.extract! trip_check_point, :id, :trip, :speed, :latitude, :longitude, :user, :created_at, :updated_at
+    3:     json.url trip_trip_check_point_url(@trip, trip_check_point, format: :json)
+    4: end
+  
+app/views/api/v1/trip_check_points/_trip_check_point.json.jbuilder:3:in `block in _app_views_api_v__trip_check_points__trip_check_point_json_jbuilder__540284505253472183_70273776767640'
+app/views/api/v1/trip_check_points/_trip_check_point.json.jbuilder:1:in `_app_views_api_v__trip_check_points__trip_check_point_json_jbuilder__540284505253472183_70273776767640'
+app/views/api/v1/trip_check_points/show.json.jbuilder:1:in `_app_views_api_v__trip_check_points_show_json_jbuilder__2058349187320450105_70273776784300'
+app/controllers/api/v1/trip_check_points_controller.rb:23:in `create'
+Started POST "/api/v1/trips/3/trip_check_points/" for 127.0.0.1 at 2018-03-08 19:11:46 +0200
+Processing by Api::V1::TripCheckPointsController#create as JSON
+  Parameters: {"trip_check_point"=>{"user_id"=>"2", "latitude"=>"55.3", "longitude"=>"14.2", "speed"=>"100"}, "trip"=>{"starting_time"=>"1521376188", "current_status"=>"created"}, "trip_id"=>"3"}
+  [1m[36mTrip Load (0.5ms)[0m  [1m[34mSELECT  `trips`.* FROM `trips` WHERE `trips`.`id` = 3 LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `trip_check_points` (`trip_id`, `speed`, `latitude`, `longitude`, `user_id`, `created_at`, `updated_at`) VALUES (3, 100, 55.3, 14.2, 2, '2018-03-08 17:11:46', '2018-03-08 17:11:46')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `delayed_jobs` (`handler`, `run_at`, `created_at`, `updated_at`) VALUES ('--- !ruby/object:Delayed::PerformableMethod\nobject: !ruby/object:TripCheckPoint\n  concise_attributes:\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: id\n    value_before_type_cast: 13\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: trip_id\n    value_before_type_cast: 3\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: speed\n    value_before_type_cast: 100\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: latitude\n    value_before_type_cast: 55.3\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: longitude\n    value_before_type_cast: 14.2\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: user_id\n    value_before_type_cast: 2\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: created_at\n    value_before_type_cast: 2018-03-08 17:11:46.000000000 Z\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: updated_at\n    value_before_type_cast: 2018-03-08 17:11:46.000000000 Z\n  new_record: false\n  active_record_yaml_version: 2\nmethod_name: :cache_last_location_without_delay\nargs: []\n', '2018-03-08 17:11:46', '2018-03-08 17:11:46', '2018-03-08 17:11:46')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  Rendering api/v1/trip_check_points/show.json.jbuilder
+  Rendered api/v1/trip_check_points/_trip_check_point.json.jbuilder (5.7ms)
+  Rendered api/v1/trip_check_points/show.json.jbuilder (11.7ms)
+Completed 201 Created in 34ms (Views: 15.5ms | ActiveRecord: 3.8ms)
+
+
+Started POST "/api/v1/trips/3/trip_check_points/" for 127.0.0.1 at 2018-03-08 19:12:06 +0200
+Processing by Api::V1::TripCheckPointsController#create as JSON
+  Parameters: {"trip_check_point"=>{"user_id"=>"2", "latitude"=>"55.3", "longitude"=>"14.2", "speed"=>"100"}, "trip"=>{"starting_time"=>"1521376188", "current_status"=>"created"}, "trip_id"=>"3"}
+  [1m[36mTrip Load (0.4ms)[0m  [1m[34mSELECT  `trips`.* FROM `trips` WHERE `trips`.`id` = 3 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO `delayed_jobs` (`handler`, `run_at`, `created_at`, `updated_at`) VALUES ('--- !ruby/object:Delayed::PerformableMethod\nobject: !ruby/class \'TripCheckPoint\'\nmethod_name: :delayed_save\nargs:\n- !ruby/object:TripCheckPoint\n  concise_attributes:\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: id\n  - !ruby/object:ActiveRecord::Attribute::FromUser\n    name: trip_id\n    value_before_type_cast: 3\n    original_attribute: !ruby/object:ActiveRecord::Attribute::FromDatabase\n      name: trip_id\n      type: &2 !ruby/object:ActiveModel::Type::Integer\n        precision: \n        scale: \n        limit: 8\n        range: !ruby/range\n          begin: -9223372036854775808\n          end: 9223372036854775808\n          excl: true\n  - !ruby/object:ActiveRecord::Attribute::FromUser\n    name: speed\n    value_before_type_cast: \'100\'\n    original_attribute: !ruby/object:ActiveRecord::Attribute::FromDatabase\n      name: speed\n      type: !ruby/object:ActiveModel::Type::Integer\n        precision: \n        scale: \n        limit: 4\n        range: !ruby/range\n          begin: -2147483648\n          end: 2147483648\n          excl: true\n  - !ruby/object:ActiveRecord::Attribute::FromUser\n    name: latitude\n    value_before_type_cast: \'55.3\'\n    original_attribute: !ruby/object:ActiveRecord::Attribute::FromDatabase\n      name: latitude\n      type: &1 !ruby/object:ActiveModel::Type::Float\n        precision: \n        scale: \n        limit: 24\n  - !ruby/object:ActiveRecord::Attribute::FromUser\n    name: longitude\n    value_before_type_cast: \'14.2\'\n    original_attribute: !ruby/object:ActiveRecord::Attribute::FromDatabase\n      name: longitude\n      type: *1\n  - !ruby/object:ActiveRecord::Attribute::FromUser\n    name: user_id\n    value_before_type_cast: \'2\'\n    original_attribute: !ruby/object:ActiveRecord::Attribute::FromDatabase\n      name: user_id\n      type: *2\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: created_at\n  - !ruby/object:ActiveRecord::Attribute::FromDatabase\n    name: updated_at\n  new_record: true\n  active_record_yaml_version: 2\n', '2018-03-08 17:12:06', '2018-03-08 17:12:06', '2018-03-08 17:12:06')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+No template found for Api::V1::TripCheckPointsController#create, rendering head :no_content
+Completed 204 No Content in 171ms (ActiveRecord: 8.5ms)
+
+

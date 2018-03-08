@@ -1,1 +1,1 @@
-json.partial! "trips/trip", trip: @trip
+json.partial! "api/v1/trips/trip", trip: @trip

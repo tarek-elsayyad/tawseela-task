@@ -1,1 +1,1 @@
-json.array! @trips, partial: 'trips/trip', as: :trip
+json.array! @trips, partial: 'api/v1/trips/trip', as: :trip

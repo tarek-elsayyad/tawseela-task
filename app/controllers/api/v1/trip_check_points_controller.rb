@@ -18,7 +18,6 @@ class Api::V1::TripCheckPointsController < ApplicationController
   # POST /trips/1/trip_check_points.json
   def create
     @trip_check_point = @trip.trip_check_points.build(trip_check_point_params)
-
     if @trip_check_point.save
       render :show, status: :created
     else

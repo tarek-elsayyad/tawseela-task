@@ -12,4 +12,5 @@ class TripCheckPoint < ApplicationRecord
     end
 
     handle_asynchronously :cache_last_location
+
 end
